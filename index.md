@@ -31,7 +31,7 @@ The target variables are binary indicators of alcohol, nicotine, and cannabis us
 
 ![image](https://github.com/user-attachments/assets/f990d918-14c6-473f-acb2-bf598865b930)
 
-*Figure 1: Alcohol consumption distribution bar plot.*
+*Figure 1: Alcohol consumption distribution bar plot. (Here the data is imbalanced)*
 
 ![image](https://github.com/user-attachments/assets/2578c5fe-cae9-4a4a-8104-905158d1c8f5)
 
@@ -50,23 +50,26 @@ The target variables are binary indicators of alcohol, nicotine, and cannabis us
 These heatmaps illustrate the percentage overlap between usage of alcohol, nicotine, and cannabis, based on the raw unbalanced dataset. Each heatmap compares two substances, breaking down the percentages of users (1) and non-users (0) for both categories. The findings are as follows:
 
 ![image](https://github.com/user-attachments/assets/bca0639c-94a5-4b79-8764-c762299f321a)
+
 Among individuals who do not consume alcohol (0), 58.1% also do not use nicotine, while 41.9% do. For alcohol users (1), the distribution is nearly balanced: 57.3% also use nicotine, while 42.7% do not. This suggests a moderate overlap between alcohol and nicotine use.
 
 ![image](https://github.com/user-attachments/assets/f639b3e1-2325-4c36-aa69-0f278d88bd4f)
+
 For non-drinkers (0), 61.0% also do not use cannabis, while 39.0% are cannabis users. Among drinkers (1), the distribution is again closer to balance: 54.1% are also cannabis users, and 45.9% are not. Alcohol and cannabis usage show a weaker overlap compared to alcohol and nicotine.
 
 ![image](https://github.com/user-attachments/assets/94e1bc16-daa5-4804-92e6-7aa58643bd57)
+
 Among non-cannabis users (0), 71.0% do not use nicotine, while 29.0% do. Cannabis users (1) show a strong overlap with nicotine users, with 80.4% also using nicotine and only 19.6% not using nicotine. This indicates a significant relationship between cannabis and nicotine use.
 
-One limitation is that the data here is unbalanced, especially for alcohole consumption. This is why preprocessing is important. 
+One limitation is that the data here is unbalanced, especially for alcohole consumption. I accounted for this issue during preprocessing of the data. 
 
 
 ## Preprocessing Steps
-	•	Class Imbalance Handling: 
- Applied SMOTE to address the imbalance in user vs. non-user categories.
+
+Class Imbalance Handling: 
+Applied SMOTE to address the imbalance in user vs. non-user categories.
  
  Code: 
-
 ```python
 from imblearn.over_sampling import SMOTE
 
@@ -74,14 +77,16 @@ smote = SMOTE(random_state=42)
 X, y1 = smote.fit_resample(X, y1)
 ```
 
-	•	Feature Scaling: Standardized numeric features to improve model performance.
-	•	Target Binarization: Combined usage levels into two categories (0 for non-user, 1 for user).
+Feature Scaling: Standardized numeric features to improve model performance.
+Target Binarization: Combined usage levels into two categories (0 for non-user, 1 for user).
+
+
 
 ## Modelling
 
 Supervised learning methods were employed, including:
 
-	1.	Random Forest: To establish a baseline and identify feature importance.
+	1.	Random Forest: Handle high-dimensional data
 	2.	Logistic Regression: For interpretable predictions based on linear relationships.
 	3.	XGBoost: To capture complex, non-linear patterns in the data.
 
@@ -91,8 +96,7 @@ The models were evaluated using:
 	•	AUC-ROC: To assess discriminatory power between users and non-users.
 	•	Classification Report: To evaluate precision, recall, and F1-score for each class.
 
-The model might involve optimizing some quantity. You can include snippets of code if it is helpful to explain things.
-
+Model:
 ```python
 models = {
     "Random Forest": RandomForestClassifier(random_state=42),
@@ -102,7 +106,7 @@ models = {
 ```
 
 
-## Results
+## Results (Without feature selection)
 
 
 Alcohol Consumption
@@ -135,6 +139,7 @@ feature_importances = rf_model.feature_importances_
 Key findings include:
 
 Top Features: Traits such as Nscore (Neuroticism), Oscore (Openness), Ascore (Agreeableness), Escore (Extraversion), Cscore (Conscientiousness) consistently ranked as the most impactful features across all predictions.
+
  
 ## Results 
 
