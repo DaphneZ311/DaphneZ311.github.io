@@ -2,29 +2,50 @@
 
 ## My Project
 
-I applied machine learning techniques to investigate... Below is my report.
+I applied machine learning techniques to investigate the relationships between alcohol, nicotine, and cannabis consumption based on personality traits and demographic data. Below is my report.
 
 ***
 
 ## Introduction 
 
-Here is a summary description of the topic. Here is the problem. This is why the problem is important.
+Substance use, particularly alcohol, nicotine, and cannabis, has significant implications for public health. Understanding the factors associated with their consumption can provide insights for preventive measures and interventions.
 
-There is some dataset that we can use to help solve this problem. This allows a machine learning approach. This is how I will solve the problem using supervised/unsupervised/reinforcement/etc. machine learning.
+The dataset used in this study, sourced from the UCI Machine Learning Repository, contains demographic information and personality traits of individuals, along with their substance use behaviors. This allows us to apply machine learning techniques to predict substance use and uncover patterns in behavior.
 
-We did this to solve the problem. We concluded that...
+By using supervised learning models such as Random Forest, Logistic Regression, and XGBoost, I aimed to classify individuals as users or non-users for each substance and identify key predictors of substance use. The findings demonstrate how demographic and psychological factors influence substance use patterns.
 
 ## Data
 
 Here is an overview of the dataset, how it was obtained and the preprocessing steps taken, with some plots!
 
-![](assets/IMG/datapenguin.png){: width="500" }
+The dataset contains 1885 instances and includes features such as:
+	•	Demographics: Age, gender, education level, country, and ethnicity.
+	•	Personality Traits: Neuroticism, extraversion, openness, agreeableness, and conscientiousness (measured using NEO-FFI-R).
+	•	Behavioral Traits: Impulsivity and sensation seeking.
 
+The target variables are binary indicators of alcohol, nicotine, and cannabis use:
+	•	0: Non-user.
+	•	1: User.
+
+![](assets/IMG/datapenguin.png){: width="500" }
 *Figure 1: Here is a caption for my diagram. This one shows a pengiun [1].*
+
+## Preprocessing Steps
+	•	Class Imbalance Handling: Applied SMOTE to address the imbalance in user vs. non-user categories.
+	•	Feature Scaling: Standardized numeric features to improve model performance.
+	•	Target Binarization: Combined usage levels into two categories (0 for non-user, 1 for user).
 
 ## Modelling
 
-Here are some more details about the machine learning approach, and why this was deemed appropriate for the dataset. 
+Supervised learning methods were employed, including:
+	1.	Random Forest: To establish a baseline and identify feature importance.
+	2.	Logistic Regression: For interpretable predictions based on linear relationships.
+	3.	XGBoost: To capture complex, non-linear patterns in the data.
+
+The models were evaluated using:
+	•	Accuracy: To measure overall prediction correctness.
+	•	AUC-ROC: To assess discriminatory power between users and non-users.
+	•	Classification Report: To evaluate precision, recall, and F1-score for each class.
 
 <p>
 When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
@@ -50,18 +71,22 @@ Figure X shows... [description of Figure X].
 
 ## Discussion
 
-From Figure X, one can see that... [interpretation of Figure X].
+From the results, XGBoost was the best-performing model, achieving the highest AUC-ROC and accuracy. The findings indicate that:
+	1.	Personality Traits: Neuroticism, extraversion, and impulsivity strongly predict alcohol consumption.
+	2.	Demographics: Age is a significant predictor, with younger individuals showing higher rates of usage.
+	3.	Behavioral Patterns: Sensation seeking and impulsivity are shared traits across alcohol, nicotine, and cannabis users.
 
 ## Conclusion
 
-Here is a brief summary. From this work, the following conclusions can be made:
-* first conclusion
-* second conclusion
+This project demonstrates how machine learning can predict substance use based on personality traits and demographics. The insights gained can inform public health initiatives and help target interventions more effectively.
 
 Here is how this work could be developed further in a future project.
 
+	1.	Investigate the interaction between personality traits and demographic factors.
+	2.	Expand the study to include other substances like cocaine or heroin.
+	3.	Explore deep learning methods for potential performance gains.
+
 ## References
-[1] DALL-E 3
+[1] UCI Machine Learning Repository: Drug Consumption (Quantified).
 
 [back](./)
-
