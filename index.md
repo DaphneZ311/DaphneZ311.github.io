@@ -67,6 +67,7 @@ One limitation is that the data here is unbalanced, especially for alcohole cons
 ## Preprocessing Steps
 
 Class Imbalance Handling: 
+
 Applied SMOTE to address the imbalance in user vs. non-user categories.
  
  Code: 
@@ -78,6 +79,7 @@ X, y1 = smote.fit_resample(X, y1)
 ```
 
 Feature Scaling: Standardized numeric features to improve model performance.
+
 Target Binarization: Combined usage levels into two categories (0 for non-user, 1 for user).
 
 
