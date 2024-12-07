@@ -104,19 +104,21 @@ models = {
 
 ## Results
 
+
 Alcohol Consumption
 
-	The machine learning models trained to predict alcohol consumption based on demographic and personality traits yielded diverse performance results. The Random Forest model achieved the highest accuracy (97.1%) and AUC-ROC (0.995), demonstrating strong discriminatory power and balanced precision-recall performance for both user and non-user classes. XGBoost also performed exceptionally well, with an accuracy of 95.7% and an AUC-ROC of 0.985, showcasing its capability to handle complex patterns in the data. 
-	In contrast, Logistic Regression underperformed significantly, achieving an accuracy of 63.7% and an AUC-ROC of 0.672, suggesting that linear relationships were insufficient to capture the intricacies of the dataset. These results highlight the importance of using non-linear models like Random Forest and XGBoost for capturing the complex interactions between features in predicting alcohol consumption.
+The machine learning models trained to predict alcohol consumption based on demographic and personality traits yielded diverse performance results. The Random Forest model achieved the highest accuracy (97.1%) and AUC-ROC (0.995), demonstrating strong discriminatory power and balanced precision-recall performance for both user and non-user classes. XGBoost also performed exceptionally well, with an accuracy of 95.7% and an AUC-ROC of 0.985, showcasing its capability to handle complex patterns in the data. 
+In contrast, Logistic Regression underperformed significantly, achieving an accuracy of 63.7% and an AUC-ROC of 0.672, suggesting that linear relationships were insufficient to capture the intricacies of the dataset. These results highlight the importance of using non-linear models like Random Forest and XGBoost for capturing the complex interactions between features in predicting alcohol consumption.
 
 
 Nicotine Consumption
 
-	The predictive models for nicotine consumption demonstrated moderate performance. XGBoost achieved the highest accuracy (70.3%) and a decent AUC-ROC of 0.776, Random Forest followed closely with an accuracy of 69.3% and a slightly higher AUC-ROC of 0.788, Logistic Regression, while comparable in accuracy (69.1%), had the lowest AUC-ROC (0.750), suggesting limited capability to capture non-linear relationships in the dataset. 
+The predictive models for nicotine consumption demonstrated moderate performance. XGBoost achieved the highest accuracy (70.3%) and a decent AUC-ROC of 0.776, Random Forest followed closely with an accuracy of 69.3% and a slightly higher AUC-ROC of 0.788, Logistic Regression, while comparable in accuracy (69.1%), had the lowest AUC-ROC (0.750), suggesting limited capability to capture non-linear relationships in the dataset. 
+
 
 Cannabis Consumption
 
-	The predictive models for cannabis consumption achieved consistent and moderate performance across all tested algorithms. Random Forest had an accuracy of 78.8% and the highest AUC-ROC of 0.869, Logistic Regression performed slightly lower with an accuracy of 77.5% and an AUC-ROC of 0.865, XGBoost also delivered robust results with an accuracy of 79.0% and an AUC-ROC of 0.855, demonstrating effective handling of complex relationships. Overall, all three models showed comparable performance.
+The predictive models for cannabis consumption achieved consistent and moderate performance across all tested algorithms. Random Forest had an accuracy of 78.8% and the highest AUC-ROC of 0.869, Logistic Regression performed slightly lower with an accuracy of 77.5% and an AUC-ROC of 0.865, XGBoost also delivered robust results with an accuracy of 79.0% and an AUC-ROC of 0.855, demonstrating effective handling of complex relationships. Overall, all three models showed comparable performance.
 
 
 ## Feature Selection
@@ -132,7 +134,7 @@ feature_importances = rf_model.feature_importances_
 
 Key findings include:
 
-	Top Features: Traits such as Nscore (Neuroticism), Oscore (Openness), Ascore (Agreeableness), Escore (Extraversion), Cscore (Conscientiousness) consistently ranked as the most impactful features across all predictions.
+Top Features: Traits such as Nscore (Neuroticism), Oscore (Openness), Ascore (Agreeableness), Escore (Extraversion), Cscore (Conscientiousness) consistently ranked as the most impactful features across all predictions.
  
 ## Results 
 
