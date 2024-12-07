@@ -28,12 +28,19 @@ The target variables are binary indicators of alcohol, nicotine, and cannabis us
 	•	1: User.
 
 ![image](https://github.com/user-attachments/assets/f990d918-14c6-473f-acb2-bf598865b930)
+
 *Figure 1: Alcohol consumption distribution bar plot.*
+
 ![image](https://github.com/user-attachments/assets/2578c5fe-cae9-4a4a-8104-905158d1c8f5)
+
 *Figure 2: Cannabis consumption distribution bar plot.*
+
 ![image](https://github.com/user-attachments/assets/2450d3a1-10e5-486d-93fb-3948f8690a94)
+
 *Figure 3: Nicotine consumption distribution bar plot.*
+
 ![image](https://github.com/user-attachments/assets/7ed89f42-020e-4f4b-9ce6-3dc673f42aa6)
+
 *Figure 4: nscore distribution plot.*
 
 ## Preprocessing Steps
