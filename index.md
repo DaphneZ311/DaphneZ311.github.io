@@ -27,12 +27,14 @@ The target variables are binary indicators of alcohol, nicotine, and cannabis us
 	•	0: Non-user.
 	•	1: User.
 
-![image](https://github.com/user-attachments/assets/378b8d14-ecd1-4fd8-98c3-fe30a2039935){: width="150" }
-![image](https://github.com/user-attachments/assets/f990d918-14c6-473f-acb2-bf598865b930){: width="150" }
-![image](https://github.com/user-attachments/assets/2578c5fe-cae9-4a4a-8104-905158d1c8f5){: width="150" }
-![image](https://github.com/user-attachments/assets/2450d3a1-10e5-486d-93fb-3948f8690a94){: width="150" }
-![image](https://github.com/user-attachments/assets/7ed89f42-020e-4f4b-9ce6-3dc673f42aa6){: width="150" }
-*Figure 1: Here is a caption for my diagram. This one shows a pengiun [1].*
+![image](https://github.com/user-attachments/assets/f990d918-14c6-473f-acb2-bf598865b930)
+*Figure 1: Alcohol consumption distribution bar plot.*
+![image](https://github.com/user-attachments/assets/2578c5fe-cae9-4a4a-8104-905158d1c8f5)
+*Figure 2: Cannabis consumption distribution bar plot.*
+![image](https://github.com/user-attachments/assets/2450d3a1-10e5-486d-93fb-3948f8690a94)
+*Figure 3: Nicotine consumption distribution bar plot.*
+![image](https://github.com/user-attachments/assets/7ed89f42-020e-4f4b-9ce6-3dc673f42aa6)
+*Figure 4: nscore distribution plot.*
 
 ## Preprocessing Steps
 	•	Class Imbalance Handling: Applied SMOTE to address the imbalance in user vs. non-user categories.
