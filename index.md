@@ -19,11 +19,13 @@ By using supervised learning models such as Random Forest, Logistic Regression, 
 Here is an overview of the dataset, how it was obtained and the preprocessing steps taken, with some plots!
 
 The dataset contains 1885 instances and includes features such as:
+
 	•	Demographics: Age, gender, education level, country, and ethnicity.
 	•	Personality Traits: Neuroticism, extraversion, openness, agreeableness, and conscientiousness (measured using NEO-FFI-R).
 	•	Behavioral Traits: Impulsivity and sensation seeking.
 
 The target variables are binary indicators of alcohol, nicotine, and cannabis use:
+
 	•	0: Non-user.
 	•	1: User.
 
@@ -43,51 +45,103 @@ The target variables are binary indicators of alcohol, nicotine, and cannabis us
 
 *Figure 4: nscore distribution plot.*
 
+## Data Visualization 
+
+These heatmaps illustrate the percentage overlap between usage of alcohol, nicotine, and cannabis, based on the raw unbalanced dataset. Each heatmap compares two substances, breaking down the percentages of users (1) and non-users (0) for both categories. The findings are as follows:
+
+![image](https://github.com/user-attachments/assets/bca0639c-94a5-4b79-8764-c762299f321a)
+Among individuals who do not consume alcohol (0), 58.1% also do not use nicotine, while 41.9% do. For alcohol users (1), the distribution is nearly balanced: 57.3% also use nicotine, while 42.7% do not. This suggests a moderate overlap between alcohol and nicotine use.
+
+![image](https://github.com/user-attachments/assets/f639b3e1-2325-4c36-aa69-0f278d88bd4f)
+For non-drinkers (0), 61.0% also do not use cannabis, while 39.0% are cannabis users. Among drinkers (1), the distribution is again closer to balance: 54.1% are also cannabis users, and 45.9% are not. Alcohol and cannabis usage show a weaker overlap compared to alcohol and nicotine.
+
+![image](https://github.com/user-attachments/assets/94e1bc16-daa5-4804-92e6-7aa58643bd57)
+Among non-cannabis users (0), 71.0% do not use nicotine, while 29.0% do. Cannabis users (1) show a strong overlap with nicotine users, with 80.4% also using nicotine and only 19.6% not using nicotine. This indicates a significant relationship between cannabis and nicotine use.
+
+One limitation is that the data here is unbalanced, especially for alcohole consumption. This is why preprocessing is important. 
+
+
 ## Preprocessing Steps
 	•	Class Imbalance Handling: Applied SMOTE to address the imbalance in user vs. non-user categories.
+ ```python
+from imblearn.over_sampling import SMOTE
+
+smote = SMOTE(random_state=42)
+X, y1 = smote.fit_resample(X, y1)
+```
+
 	•	Feature Scaling: Standardized numeric features to improve model performance.
 	•	Target Binarization: Combined usage levels into two categories (0 for non-user, 1 for user).
+
+
 
 ## Modelling
 
 Supervised learning methods were employed, including:
+
 	1.	Random Forest: To establish a baseline and identify feature importance.
 	2.	Logistic Regression: For interpretable predictions based on linear relationships.
 	3.	XGBoost: To capture complex, non-linear patterns in the data.
 
 The models were evaluated using:
+
 	•	Accuracy: To measure overall prediction correctness.
 	•	AUC-ROC: To assess discriminatory power between users and non-users.
 	•	Classification Report: To evaluate precision, recall, and F1-score for each class.
 
-<p>
-When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-</p>
-
 The model might involve optimizing some quantity. You can include snippets of code if it is helpful to explain things.
 
 ```python
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.datasets import make_classification
-X, y = make_classification(n_features=4, random_state=0)
-clf = ExtraTreesClassifier(n_estimators=100, random_state=0)
-clf.fit(X, y)
-clf.predict([[0, 0, 0, 0]])
+models = {
+    "Random Forest": RandomForestClassifier(random_state=42),
+    "Logistic Regression": LogisticRegression(random_state=42, max_iter=500),
+    "XGBoost": XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
+}
 ```
 
-This is how the method was developed.
 
 ## Results
 
-Figure X shows... [description of Figure X].
+Alcohol Consumption
+
+	•	The machine learning models trained to predict alcohol consumption based on demographic and personality traits yielded diverse performance results. The Random Forest model achieved the highest accuracy (97.1%) and AUC-ROC (0.995), demonstrating strong discriminatory power and balanced precision-recall performance for both user and non-user classes. XGBoost also performed exceptionally well, with an accuracy of 95.7% and an AUC-ROC of 0.985, showcasing its capability to handle complex patterns in the data. 
+ 	•	In contrast, Logistic Regression underperformed significantly, achieving an accuracy of 63.7% and an AUC-ROC of 0.672, suggesting that linear relationships were insufficient to capture the intricacies of the dataset. These results highlight the importance of using non-linear models like Random Forest and XGBoost for capturing the complex interactions between features in predicting alcohol consumption.
+
+
+Nicotine Consumption
+
+	•	The predictive models for nicotine consumption demonstrated moderate performance. XGBoost achieved the highest accuracy (70.3%) and a decent AUC-ROC of 0.776, Random Forest followed closely with an accuracy of 69.3% and a slightly higher AUC-ROC of 0.788, Logistic Regression, while comparable in accuracy (69.1%), had the lowest AUC-ROC (0.750), suggesting limited capability to capture non-linear relationships in the dataset. 
+
+Cannabis Consumption
+
+	•	The predictive models for cannabis consumption achieved consistent and moderate performance across all tested algorithms. Random Forest had an accuracy of 78.8% and the highest AUC-ROC of 0.869, Logistic Regression performed slightly lower with an accuracy of 77.5% and an AUC-ROC of 0.865, XGBoost also delivered robust results with an accuracy of 79.0% and an AUC-ROC of 0.855, demonstrating effective handling of complex relationships. Overall, all three models showed comparable performance.
+
+
+## Feature Selection
+
+Feature importance analysis was conducted using the Random Forest model to identify the most influential features in predicting substance use (alcohol, nicotine, and cannabis). The feature importance scores, derived from the model, indicate how much each feature contributes to the prediction.
+
+```python
+feature_importances = rf_model.feature_importances_
+```
+![image](https://github.com/user-attachments/assets/baa221d7-1e3e-484b-8e88-e5eec4d4d41b)
+
+Key findings include:
+
+	•	Top Features: Traits such as Nscore (Neuroticism), Oscore (Openness), Ascore (Agreeableness), Escore (Extraversion), Cscore (Conscientiousness) consistently ranked as the most impactful features across all predictions.
+ 
+## Results 
+
+After applying feature selection, the predictive models performance does not change significantly. 
+For alcohol, Random Forest and XGBoost achieved high accuracies of 94.7% and 94.4%, respectively, with strong AUC-ROC values (0.990 and 0.984), while Logistic Regression underperformed with 53.7% accuracy. For cannabis, Random Forest outperformed Logistic Regression and XGBoost, with 69% accuracy and a 0.757 AUC-ROC. Similarly, for nicotine, Random Forest achieved the best results (69% accuracy, 0.754 AUC-ROC). Feature selection consistently improved model interpretability and highlighted key predictors, though non-linear models such as Random Forest and XGBoost performed significantly better overall.
+
 
 ## Discussion
 
-From the results, XGBoost was the best-performing model, achieving the highest AUC-ROC and accuracy. The findings indicate that:
-	1.	Personality Traits: Neuroticism, extraversion, and impulsivity strongly predict alcohol consumption.
-	2.	Demographics: Age is a significant predictor, with younger individuals showing higher rates of usage.
-	3.	Behavioral Patterns: Sensation seeking and impulsivity are shared traits across alcohol, nicotine, and cannabis users.
+The analysis highlights the effectiveness of machine learning models in predicting alcohol, cannabis, and nicotine consumption based on personality traits and demographic data. Across all substances, Random Forest and XGBoost consistently outperformed Logistic Regression, demonstrating the importance of non-linear models in capturing complex relationships within the dataset. For alcohol consumption, the models achieved exceptionally high accuracy and AUC-ROC values, showcasing strong predictive power and reliability.
+
+In contrast, predictions for cannabis and nicotine were moderately accurate, with Random Forest performing slightly better than XGBoost and Logistic Regression. This suggests that the patterns in cannabis and nicotine use are more complex or less strongly correlated with the available features. Feature selection played a significant role in improving model interpretability, confirming the critical influence of traits such as conscientiousness, neuroticism, and impulsivity.
+
 
 ## Conclusion
 
